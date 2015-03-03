@@ -3,11 +3,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
 </h:head>
-<h:outputStylesheet library="css" name="styles.css"  />
+<h:outputStylesheet library="css" name="table-style.css"  />
 <h:head>
     <title>JSF Demo PhoneBook</title>
 </h:head>
@@ -22,8 +22,25 @@
                      headerClass="phoneTableHeader"
                      rowClasses="phoneTableOddRow,phoneTableEvenRow">
             <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{phonebook.name}
+                <f:facet name="header"> FIO </f:facet>
+
+                <p:dataTable value="#{phonebook.fio}" var="fio">
+                    <p:column>
+                      <f:facet name="header">name </f:facet>
+                            #{fio.name}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">fname </f:facet>
+                        #{fio.fname}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">oname </f:facet>
+                        #{fio.oname}
+                    </p:column>
+
+                </p:dataTable>
+
+
             </h:column>
             <h:column>
                 <f:facet name="header">Address</f:facet>
@@ -37,12 +54,46 @@
                 <f:facet name="header">BirthDay</f:facet>
                 #{phonebook.birthDate}
             </h:column>
+            <h:column>
+
+                <f:facet name="header">Action</f:facet>
+
+                <h:commandLink value="Delete"
+                               action="#{phoneBookBean.deleteAction(phonebook)}" />
+
+            </h:column>
         </h:dataTable>
+
+
+    <h3>Add New Phone</h3>
+    <table>
+        <tr>
+            <td>Phone :</td>
+            <td><h:inputText size="20" value="#{phoneBookBean.phone}" /></td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td><h:inputText size="50" value="#{phoneBookBean.address}" /></td>
+        </tr>
+        <tr>
+            <td>BirthDate :</td>
+            <td>
+                <h:inputText id="date" value="#{phoneBookBean.birthDate}"
+                             size="12"   required="true">
+                    <f:convertDateTime pattern="d-M-yyyy" />
+                </h:inputText>
+
+            </td>
+        </tr>
+        <tr>
+            <td>FIO :</td>
+            <td><h:inputText size="20" value="#{phoneBookBean.name}" /></td>
+        </tr>
+    </table>
+
+    <h:commandButton value="Add" action="#{phoneBookBean.addPhoneBook}" />
+
     </h:form>
-
-
-
-
 
     <h:form>
         <h:commandButton value="Edit Phone" action="edit?faces-redirect=true"/>

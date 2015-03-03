@@ -1,7 +1,7 @@
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,17 +14,28 @@ public class PhoneBookBean implements Serializable {
     Date birthDate;
     String address;
     String phone;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     Integer photo;
+    String name;
+
     private static final ArrayList<PhoneBook> phoneBooks
             = new ArrayList<PhoneBook>(Arrays.asList(
             new PhoneBook(null, "John", "", "", java.sql.Date.valueOf("1910-01-01"),
-    //new Date.valueOf("01-01-1910"),
+                    //new Date.valueOf("01-01-1910"),
                     "Almaty1", "7017017070", 5),
-            new PhoneBook(null, "Andry", "", "", Date.valueOf("1920-01-01"),
+            new PhoneBook(null, "Andry", "", "", java.sql.Date.valueOf("1920-01-01"),
                     "Almaty2", "7017017010", 6),
-            new PhoneBook(null, "Will", "", "", Date.valueOf("1930-01-01"),
+            new PhoneBook(null, "Will", "", "", java.sql.Date.valueOf("1930-01-01"),
                     "Almaty3", "7017017020", 7),
-            new PhoneBook(null, "Peter", "", "", Date.valueOf("1940-01-01"),
+            new PhoneBook(null, "Peter", "", "", java.sql.Date.valueOf("1940-01-01"),
                     "Almaty4 tylebaeva 55", "7017017030", 99)));
 
     public ArrayList<PhoneBook> getPhoneBooks() {
@@ -32,9 +43,17 @@ public class PhoneBookBean implements Serializable {
     }
 
     public String addPhoneBook() {
-        PhoneBook phoneBook = new PhoneBook(null, fio, birthDate, address,
+        PhoneBook phoneBook = new PhoneBook(null, name, "", "",
+                new java.sql.Date(birthDate.getTime())
+                , address,
                 phone, photo);
         phoneBooks.add(phoneBook);
+        return null;
+    }
+
+    public String deleteAction(PhoneBook phoneBook) {
+
+        phoneBooks.remove(phoneBook);
         return null;
     }
 
