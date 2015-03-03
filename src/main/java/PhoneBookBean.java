@@ -17,13 +17,14 @@ public class PhoneBookBean implements Serializable {
     Integer photo;
     private static final ArrayList<PhoneBook> phoneBooks
             = new ArrayList<PhoneBook>(Arrays.asList(
-            new PhoneBook(null, "John", "", "", Date.valueOf("01-01-1910"),
+            new PhoneBook(null, "John", "", "", java.sql.Date.valueOf("1910-01-01"),
+    //new Date.valueOf("01-01-1910"),
                     "Almaty1", "7017017070", 5),
-            new PhoneBook(null, "Andry", "", "", Date.valueOf("01-01-1920"),
+            new PhoneBook(null, "Andry", "", "", Date.valueOf("1920-01-01"),
                     "Almaty2", "7017017010", 6),
-            new PhoneBook(null, "Will", "", "", Date.valueOf("01-01-1930"),
+            new PhoneBook(null, "Will", "", "", Date.valueOf("1930-01-01"),
                     "Almaty3", "7017017020", 7),
-            new PhoneBook(null, "Peter", "", "", Date.valueOf("01-01-1940"),
+            new PhoneBook(null, "Peter", "", "", Date.valueOf("1940-01-01"),
                     "Almaty4 tylebaeva 55", "7017017030", 99)));
 
     public ArrayList<PhoneBook> getPhoneBooks() {

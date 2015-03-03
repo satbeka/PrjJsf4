@@ -4,6 +4,18 @@ import java.util.Arrays;
 
 public class PhoneBook{
 
+    public String getFname() {
+        return fio.getFname();
+    }
+
+    public String getOname() {
+        return fio.getOname();
+    }
+
+    public String getName() {
+        return fio.getName();
+    }
+
     Long id;
     Fio fio;
     Date birthDate;

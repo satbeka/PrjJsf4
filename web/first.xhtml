@@ -7,14 +7,43 @@
 
 <h:head>
 </h:head>
-
+<h:outputStylesheet library="css" name="styles.css"  />
 <h:head>
     <title>JSF Demo PhoneBook</title>
 </h:head>
 
-
 <h:body>
     <h:outputText value="Welcome to Phone Book"/><br/><br/>
+
+    <h2>DataTable Example</h2>
+    <h:form>
+        <h:dataTable value="#{phoneBookBean.phoneBooks}" var="phonebook"
+                     styleClass="phoneTable"
+                     headerClass="phoneTableHeader"
+                     rowClasses="phoneTableOddRow,phoneTableEvenRow">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{phonebook.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Address</f:facet>
+                #{phonebook.address}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Phone</f:facet>
+                #{phonebook.phone}
+            </h:column>
+            <h:column>
+                <f:facet name="header">BirthDay</f:facet>
+                #{phonebook.birthDate}
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+
+
+
+
     <h:form>
         <h:commandButton value="Edit Phone" action="edit?faces-redirect=true"/>
         <h:commandButton action="#{PhoneBookBean.doAddAction}" value="Add Phone"/>
