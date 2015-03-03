@@ -16,10 +16,10 @@
 <h:body>
     <h:outputText value="Welcome to Phone Book"/><br/><br/>
     <h:form>
-        <h:commandButton value="Edit Phone" action="edit"/>
+        <h:commandButton value="Edit Phone" action="edit?faces-redirect=true"/>
         <h:commandButton action="#{PhoneBookBean.doAddAction}" value="Add Phone"/>
-        <h:commandButton value="Delete Phone" action="delete"/>
-        <h:commandButton value="Search Phone" action="search"/>
+        <h:commandButton value="Delete Phone" action="delete?faces-redirect=true"/>
+        <h:commandButton value="Search Phone" action="search?faces-redirect=true"/>
     </h:form>
 </h:body>
 
