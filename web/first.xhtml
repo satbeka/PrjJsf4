@@ -2,28 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://java.sun.com/jsf/html ">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
 </h:head>
 
 <h:head>
-    <title>JSF Demo8888</title>
+    <title>JSF Demo PhoneBook</title>
 </h:head>
 
 
 <h:body>
-    <h:outputText value="METERS TO INCHES CONVERSION"/><br/><br/>
-    <h:form prependId="false">
+    <h:outputText value="Welcome to Phone Book"/><br/><br/>
+    <h:form>
         <h:commandButton value="Edit Phone" action="edit"/>
-        <h:commandButton action="add" value="Add Phone"/>
-</h:form>
-    <h:outputText value="Hello Hello   "/>lllll<br/><br/>
-    <h:outputText value="Ghhhh"/>
-    <h:commandButton action="add" value="Add Phone2"/>
+        <h:commandButton action="#{PhoneBookBean.doAddAction}" value="Add Phone"/>
+        <h:commandButton value="Delete Phone" action="delete"/>
+        <h:commandButton value="Search Phone" action="search"/>
+    </h:form>
 </h:body>
 
 
