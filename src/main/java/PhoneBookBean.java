@@ -1,4 +1,5 @@
 import model.PhoneBook;
+import persistence.SqlUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -41,8 +42,11 @@ public class PhoneBookBean implements Serializable {
 
     Integer photo;
 
-    private static final ArrayList<PhoneBook> phoneBooks
-            = new ArrayList<PhoneBook>(Arrays.asList(
+    private ArrayList<PhoneBook> phoneBooks
+            = new ArrayList<PhoneBook>();
+            //*SqlUtil.getPhoneBookAll();
+      /*
+            new ArrayList<PhoneBook>(Arrays.asList(
             new PhoneBook( 1, "John",java.sql.Date.valueOf("1910-01-01"),
                     //new Date.valueOf("01-01-1910"),
                     "Almaty1", "7017017070", 5),
@@ -52,6 +56,7 @@ public class PhoneBookBean implements Serializable {
                     "Almaty3", "7017017020", 7),
             new PhoneBook( 4, "Peter Li", java.sql.Date.valueOf("1940-01-01"),
                     "Almaty4 tylebaeva 55", "7017017030", 99)));
+    */
 
     public ArrayList<PhoneBook> getPhoneBooks() {
         return phoneBooks;
@@ -126,7 +131,12 @@ public class PhoneBookBean implements Serializable {
     }
 
     public PhoneBookBean() {
+
         System.out.println("PhoneBookBean started!");
+        this.phoneBooks=SqlUtil.getPhoneBookAll();
+
+
+
     }
 
     public static long getSerialVersionUID() {

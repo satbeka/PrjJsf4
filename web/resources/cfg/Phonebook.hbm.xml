@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.PhoneBook" table="phonebook" catalog="sakila">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="fio" type="string">
+            <column name="fio" length="100" not-null="false" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20" not-null="false"/>
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100" not-null="false"/>
+        </property>
+        <property name="birthDate" type="date">
+            <column name="birth_date"/>
+        </property>
+    </class>
+
+    <sql-query name="callPhoneBookAllProcedure">
+        <return alias="phonebook" class="model.PhoneBook"/>
+        <![CDATA[CALL sakila.get_phonebook_all]]>
+    </sql-query>
+
+</hibernate-mapping>
