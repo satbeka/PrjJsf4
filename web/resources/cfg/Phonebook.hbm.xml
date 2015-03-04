@@ -27,4 +27,25 @@
         <![CDATA[CALL sakila.get_phonebook_all]]>
     </sql-query>
 
+
+    <sql-query name="callPhoneBookByPhoneProcedure">
+        <return alias="phonebook" class="model.PhoneBook"/>
+        <![CDATA[CALL sakila.get_phonebook_phone(:phoneSeek)]]>
+    </sql-query>
+
+    <sql-query name="callInsPhoneBookProcedure">
+        <return alias="phonebook" class="model.PhoneBook"/>
+        <![CDATA[CALL sakila.ins_phonebook(:fio,:birthDate,:address,:phone)]]>
+    </sql-query>
+
+    <sql-query name="callUpdPhoneBookProcedure">
+        <return alias="phonebook" class="model.PhoneBook"/>
+        <![CDATA[CALL sakila.upd_phonebook(:id,:fio,:birthDate,:address,:phone)]]>
+    </sql-query>
+
+    <sql-query name="callDelPhoneBookProcedure">
+        <return alias="phonebook" class="model.PhoneBook"/>
+        <![CDATA[CALL sakila.del_phonebook(:id)]]>
+    </sql-query>
+
 </hibernate-mapping>
