@@ -1,5 +1,6 @@
+import model.PhoneBook;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
@@ -42,14 +43,14 @@ public class PhoneBookBean implements Serializable {
 
     private static final ArrayList<PhoneBook> phoneBooks
             = new ArrayList<PhoneBook>(Arrays.asList(
-            new PhoneBook((long) 1, "John",java.sql.Date.valueOf("1910-01-01"),
+            new PhoneBook( 1, "John",java.sql.Date.valueOf("1910-01-01"),
                     //new Date.valueOf("01-01-1910"),
                     "Almaty1", "7017017070", 5),
-            new PhoneBook((long) 2, "Andry", java.sql.Date.valueOf("1920-01-01"),
+            new PhoneBook( 2, "Andry", java.sql.Date.valueOf("1920-01-01"),
                     "Almaty2", "7017017010", 6),
-            new PhoneBook((long) 3, "Will Plok", java.sql.Date.valueOf("1930-01-01"),
+            new PhoneBook( 3, "Will Plok", java.sql.Date.valueOf("1930-01-01"),
                     "Almaty3", "7017017020", 7),
-            new PhoneBook((long) 4, "Peter Li", java.sql.Date.valueOf("1940-01-01"),
+            new PhoneBook( 4, "Peter Li", java.sql.Date.valueOf("1940-01-01"),
                     "Almaty4 tylebaeva 55", "7017017030", 99)));
 
     public ArrayList<PhoneBook> getPhoneBooks() {
@@ -57,7 +58,7 @@ public class PhoneBookBean implements Serializable {
     }
 
     public String addPhoneBook() {
-        PhoneBook phoneBook = new PhoneBook((long) 5555, fio,
+        PhoneBook phoneBook = new PhoneBook(5555, fio,
                 new java.sql.Date(birthDate.getTime())
                 , address,
                 phone, photo);
