@@ -8,7 +8,11 @@
    <managed-bean>
        <managed-bean-name>phoneBookBean</managed-bean-name>
        <managed-bean-class>PhoneBookBean</managed-bean-class>
-       <managed-bean-scope>request</managed-bean-scope>
+       <managed-bean-scope>session</managed-bean-scope>
+       <managed-property>
+           <property-name>phoneBookExample</property-name>
+           <value>#{phoneBook}</value>
+       </managed-property>
    </managed-bean>
 
     <navigation-rule>

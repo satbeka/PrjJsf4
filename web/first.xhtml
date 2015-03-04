@@ -22,24 +22,14 @@
                      headerClass="phoneTableHeader"
                      rowClasses="phoneTableOddRow,phoneTableEvenRow">
             <h:column>
+                <f:facet name="header"> Id </f:facet>
+                #{phonebook.id}
+
+            </h:column>
+
+            <h:column>
                 <f:facet name="header"> FIO </f:facet>
-
-                <p:dataTable value="#{phonebook.fio}" var="fio">
-                    <p:column>
-                      <f:facet name="header">name </f:facet>
-                            #{fio.name}
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">fname </f:facet>
-                        #{fio.fname}
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">oname </f:facet>
-                        #{fio.oname}
-                    </p:column>
-
-                </p:dataTable>
-
+                #{phonebook.fio}
 
             </h:column>
             <h:column>
@@ -52,7 +42,13 @@
             </h:column>
             <h:column>
                 <f:facet name="header">BirthDay</f:facet>
-                #{phonebook.birthDate}
+                <h:outputText value="#{phonebook.birthDate}"
+                             size="12">
+                    <f:convertDateTime pattern="d-M-yyyy" />
+                </h:outputText>
+
+
+
             </h:column>
             <h:column>
 
@@ -62,9 +58,21 @@
                                action="#{phoneBookBean.deleteAction(phonebook)}" />
 
             </h:column>
+            <h:column>
+
+                <f:facet name="header">Action</f:facet>
+                <h:commandButton value="edit id=#{phonebook.id}" action="#{phoneBookBean.editAction(phonebook)}">
+                    <f:setPropertyActionListener target="#{phoneBookBean.phoneBookExample}" value="#{phonebook}" />
+                </h:commandButton>
+
+            </h:column>
+
+
         </h:dataTable>
+    </h:form>
 
 
+    <h:form>
     <h3>Add New Phone</h3>
     <table>
         <tr>
@@ -87,7 +95,7 @@
         </tr>
         <tr>
             <td>FIO :</td>
-            <td><h:inputText size="20" value="#{phoneBookBean.name}" /></td>
+            <td><h:inputText size="20" value="#{phoneBookBean.fio}" /></td>
         </tr>
     </table>
 
@@ -96,7 +104,6 @@
     </h:form>
 
     <h:form>
-        <h:commandButton value="Edit Phone" action="edit?faces-redirect=true"/>
         <h:commandButton action="#{PhoneBookBean.doAddAction}" value="Add Phone"/>
         <h:commandButton value="Delete Phone" action="delete?faces-redirect=true"/>
         <h:commandButton value="Search Phone" action="search?faces-redirect=true"/>

@@ -5,11 +5,47 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <f:view>
-    <h:outputLabel value="Edit Phone"/>
+    <h:outputStylesheet library="css" name="table-style.css"  />
+    <h:outputLabel value="Edit Phone #{phoneBookBean.phoneBookExample}"/>
     <h:body>
-        <h:outputText value="CONVERSION RESULT"/><br/><br/>
-        <h:outputText value="1 m = 39.37 inches"/><br/><br/>
         <h:form>
+        <h2>DataTable Example</h2>
+
+            <h:dataTable value="#{phoneBookBean.phoneBookExample}" var="ph"
+                         styleClass="phoneTable"
+                         headerClass="phoneTableHeader"
+                         rowClasses="phoneTableOddRow,phoneTableEvenRow">
+                <h:column>
+                    <f:facet name="header"> Id </f:facet>
+                    #{ph.id}
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"> FIO </f:facet>
+                    <h:inputText value="#{ph.fio}" size="50" rendered="true" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    <h:inputText value="#{ph.address}" size="50" rendered="true" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Phone</f:facet>
+                    <h:inputText value="#{ph.phone}" size="20" rendered="true" />
+                </h:column>
+                <h:column>
+                    <h:inputText id="date" value="#{ph.birthDate}"
+                                 size="12"   required="true">
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:inputText>
+                </h:column>
+
+            </h:dataTable>
+
+
+
+
+            <h:commandButton value="Save Changes" action="#{phoneBookBean.saveAction}" />
             <h:commandButton action="first?faces-redirect=true" value="Return"/>
         </h:form>
     </h:body>

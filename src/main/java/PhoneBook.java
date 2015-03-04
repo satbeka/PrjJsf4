@@ -1,9 +1,8 @@
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.Arrays;
+import java.util.Date;
 
-public class PhoneBook{
+public class PhoneBook {
 
+    /*
     public String getFname() {
         return fio.getFname();
     }
@@ -15,9 +14,10 @@ public class PhoneBook{
     public String getName() {
         return fio.getName();
     }
+*/
 
     Long id;
-    Fio fio;
+    String fio;
     Date birthDate;
     String address;
     String phone;
@@ -28,6 +28,7 @@ public class PhoneBook{
         return id;
     }
 
+    /*
     public PhoneBook(Long id, String name,String fname,String oname,
                      Date birthDate, String address, String phone, Integer photo) {
 
@@ -38,8 +39,9 @@ public class PhoneBook{
         this.phone = phone;
         this.photo = photo;
     }
+    */
 
-    public PhoneBook(Long id, Fio fio, Date birthDate, String address, String phone, Integer photo) {
+    public PhoneBook(Long id, String fio, Date birthDate, String address, String phone, Integer photo) {
 
         this.id = id;
         this.fio = fio;
@@ -47,17 +49,18 @@ public class PhoneBook{
         this.address = address;
         this.phone = phone;
         this.photo = photo;
+        System.out.println("PhoneBook id="+id);
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Fio getFio() {
+    public String getFio() {
         return fio;
     }
 
-    public void setFio(Fio fio) {
+    public void setFio(String fio) {
         this.fio = fio;
     }
 
