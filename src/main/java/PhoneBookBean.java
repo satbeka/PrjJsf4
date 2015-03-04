@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @ManagedBean(name = "PhoneBookBean")
 @SessionScoped
@@ -41,10 +42,18 @@ public class PhoneBookBean implements Serializable {
     }
 
     Integer photo;
-
+    private List<PhoneBook> filteredphoneBooks;
     private ArrayList<PhoneBook> phoneBooks
             = new ArrayList<PhoneBook>();
             //*SqlUtil.getPhoneBookAll();
+
+    public List<PhoneBook> getFilteredphoneBooks() {
+        return filteredphoneBooks;
+    }
+
+    public void setFilteredphoneBooks(List<PhoneBook> filteredphoneBooks) {
+        this.filteredphoneBooks = filteredphoneBooks;
+    }
       /*
             new ArrayList<PhoneBook>(Arrays.asList(
             new PhoneBook( 1, "John",java.sql.Date.valueOf("1910-01-01"),
@@ -63,24 +72,21 @@ public class PhoneBookBean implements Serializable {
     }
 
     public String addPhoneBook() {
-        PhoneBook phoneBook = new PhoneBook(5555, fio,
-                new java.sql.Date(birthDate.getTime())
-                , address,
-                phone, photo);
-        phoneBooks.add(phoneBook);
+        System.out.println("Add phone");
+        PhoneBook phoneBook=new PhoneBook(null,this.fio,this.birthDate,this.address,this.phone,null);
+        //phoneBooks.add(phoneBook);
+        this.phoneBooks=SqlUtil.insPhoneBook(this.fio,this.birthDate,this.address,this.phone);
         return null;
     }
-    public String saveAction() {
 
-        //get all existing value but set "editable" to false
-        for (PhoneBook phoneBook : phoneBooks){
-            //phoneBook.setEditable(false);
-        }
-        System.out.println("Save phone");
-        //return to current page
+    public String savePhone(PhoneBook phoneBook) {
+        System.out.println("Save phone="+phoneBook.getId());
+        this.phoneBooks=SqlUtil.updPhoneBook(phoneBook.getId(),
+                phoneBook.getFio(),phoneBook.getBirthDate(),phoneBook.getAddress(),
+                phoneBook.getPhone());
         return null;
-
     }
+
     public String editAction(PhoneBook phoneBook){
         this.phoneBookExample=phoneBook;
         System.out.println("editAction ="+phoneBookExample);
@@ -88,15 +94,11 @@ public class PhoneBookBean implements Serializable {
     }
 
     public String deleteAction(PhoneBook phoneBook) {
-
-        phoneBooks.remove(phoneBook);
+        //phoneBooks.remove(phoneBook);
+        this.phoneBooks=SqlUtil.delPhoneBook(phoneBook.getId());
         return null;
     }
 
-    public String deleteEmployee(PhoneBook phoneBook) {
-        phoneBooks.remove(phoneBook);
-        return null;
-    }
 
     public Date getBirthDate() {
         return birthDate;
@@ -135,13 +137,14 @@ public class PhoneBookBean implements Serializable {
         System.out.println("PhoneBookBean started!");
         this.phoneBooks=SqlUtil.getPhoneBookAll();
 
-
-
     }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
+
+
+
 
 
     public String getAction() {

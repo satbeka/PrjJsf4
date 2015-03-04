@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <f:view>
     <h:outputStylesheet library="css" name="table-style.css"  />
-    <h:outputLabel value="Edit Phone #{phoneBookBean.phoneBookExample}"/>
+    <h:outputLabel value="Edit Phone #{phoneBookBean.phoneBookExample.phone}"/>
     <h:body>
         <h:form>
         <h2>DataTable Example</h2>
@@ -17,7 +17,7 @@
                          rowClasses="phoneTableOddRow,phoneTableEvenRow">
                 <h:column>
                     <f:facet name="header"> Id </f:facet>
-                    #{ph.id}
+                    <h:outputText value="#{ph.id}"/>
 
                 </h:column>
 
@@ -45,7 +45,7 @@
 
 
 
-            <h:commandButton value="Save Changes" action="#{phoneBookBean.saveAction}" />
+            <h:commandButton value="Save Changes" action="#{phoneBookBean.savePhone(phoneBookBean.phoneBookExample)}" />
             <h:commandButton action="first?faces-redirect=true" value="Return"/>
         </h:form>
     </h:body>

@@ -35,17 +35,17 @@
 
     <sql-query name="callInsPhoneBookProcedure">
         <return alias="phonebook" class="model.PhoneBook"/>
-        <![CDATA[CALL sakila.ins_phonebook(:fio,:birthDate,:address,:phone)]]>
+        <![CDATA[CALL sakila.insPhonebook(:fio;:birthDate;:address;:phone)]]>
     </sql-query>
 
     <sql-query name="callUpdPhoneBookProcedure">
         <return alias="phonebook" class="model.PhoneBook"/>
-        <![CDATA[CALL sakila.upd_phonebook(:id,:fio,:birthDate,:address,:phone)]]>
+        <![CDATA[CALL sakila.updPhonebook(:id,:fio,:birthDate,:address,:phone)]]>
     </sql-query>
 
     <sql-query name="callDelPhoneBookProcedure">
         <return alias="phonebook" class="model.PhoneBook"/>
-        <![CDATA[CALL sakila.del_phonebook(:id)]]>
+        <![CDATA[CALL sakila.delPhonebook(:id)]]>
     </sql-query>
 
 </hibernate-mapping>

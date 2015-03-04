@@ -10,6 +10,8 @@
     <name>JavaServerFaces Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
+
+
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -94,6 +96,13 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
+        </dependency>
+
+        <!-- PrimeFaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>4.0</version>
         </dependency>
 
 
