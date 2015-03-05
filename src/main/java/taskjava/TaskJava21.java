@@ -264,7 +264,13 @@ public class TaskJava21 {
     }
 
     public static void main(String[] args) {
-             expCSV(args.toString());//e
+
+        for (String s: args) {
+            System.out.println("parameter="+s);
+            expCSV(s);//e
+
+        }
+
 
     }
 }
