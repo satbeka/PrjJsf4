@@ -1,0 +1,39 @@
+select
+  qry_dep3.department_id,
+  qry_dep3.qnty_empl,
+  (
+  select min(j.min_salary) 
+    from employees eee 
+    left join jobs j on eee.job_id=j.job_id
+    where eee.department_id=qry_dep3.department_id
+  ) as min_salary,
+  (
+    select max(j2.max_salary)
+    from employees eee2
+      left join jobs j2 on eee2.job_id=j2.job_id
+    where eee2.department_id=qry_dep3.department_id
+  ) as max_salary,
+  (
+    select sum(eee3.salary)
+    from employees eee3
+      left join job_history jbh3 
+        on eee3.employee_id=jbh3.job_id
+       and (year(jbh3.end_date)-year(jbh3.start_date))>3 
+    where eee3.department_id=qry_dep3.department_id
+    
+  ) as sum_salary3years,
+   r.region_name,
+   c.country_name,
+   dd.department_name
+from
+(
+select e.department_id,count(*) qnty_empl
+from employees e
+  inner join employees ee on ee.employee_id=e.employee_id
+  group by e.department_id
+ having count(*)>3
+) qry_dep3
+  left join departments dd on qry_dep3.department_id=dd.department_id
+  left join locations l on dd.location_id=l.location_id
+  left join countries c on l.country_id=c.country_id
+  left  join regions r on c.region_id=r.region_id

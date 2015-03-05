@@ -1,0 +1,31 @@
+
+select 
+  concat(COALESCE(em.first_name,''),COALESCE(em.last_name,'')) as fio,
+  (SELECT
+     j.job_title
+   FROM job_history jbh
+     LEFT JOIN jobs j ON jbh.job_id = j.job_id
+   WHERE jbh.start_date IN
+         (
+           SELECT
+             max(j.start_date)
+           FROM job_history j
+           WHERE j.employee_id = em.employee_id
+         )
+  ) as current_title,
+  qry_perevod2.qnty_perevod as qnty_pervod
+
+
+from
+  (
+    select eee.em_id,count(*) qnty_perevod
+    FROM
+      (
+        select employee_id em_id
+        from job_history
+        group by employee_id,job_id
+      ) eee
+    group by eee.em_id
+    having count(eee.em_id)>2
+  ) qry_perevod2
+  left join employees em on qry_perevod2.em_id=em.employee_id
