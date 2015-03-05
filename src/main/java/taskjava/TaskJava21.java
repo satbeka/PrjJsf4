@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class TaskJava3 {
+public class TaskJava21 {
 
     public class Employee {
 
@@ -207,7 +207,7 @@ public class TaskJava3 {
                 String sFileName="c:\\test3.csv";
 
                 FileWriter writer = new FileWriter(sFileName);
-                TaskJava3 taskJava3 =new TaskJava3();
+                TaskJava21 taskJava3 =new TaskJava21();
                 ArrayList<Employee> employees= taskJava3.getEmployeesTable();
                 writer.append("DisplayName");
                 writer.append(',');
@@ -264,7 +264,7 @@ public class TaskJava3 {
     }
 
     public static void main(String[] args) {
-             expCSV("e");
+             expCSV(args.toString());//e
 
     }
 }
