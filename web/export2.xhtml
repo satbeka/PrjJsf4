@@ -13,7 +13,7 @@
 <h:outputStylesheet library="css" name="table-style.css"  />
 <h:graphicImage value="#{resource['images:pdf.png']}"/>
 <h:head>
-    <title>Prime Faces Export Demo model.PhoneBook</title>
+    <title>Primefaces Export Demo model.PhoneBook</title>
 </h:head>
 
 <h:form>
@@ -55,7 +55,7 @@
 
     <h:commandLink>
         <p:graphicImage value="#{resource['images:excel.png']}" />
-        <p:dataExporter type="pdf" target="tbl" fileName="myexc" />
+        <p:dataExporter type="xls" target="tbl" fileName="myexc" />
     </h:commandLink>
 
 </h:form>

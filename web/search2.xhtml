@@ -8,55 +8,42 @@
 
 
 <h:head>
-</h:head>
-<h:outputStylesheet library="css" name="table-style.css"  />
-<h:head>
-    <title>Prime Fasec Demo model.PhoneBook</title>
+    <title>Primefaces Filter Demo model.PhoneBook</title>
 </h:head>
 
-<h:body>
-    <h:outputText value="Welcome to Search Phone Book"/><br/><br/>
 
-    <h2>DataTable Example</h2>
-        <h:form>
-            <p:dataTable value="#{phoneBookBean.phoneBooks}" var="phonebook"
-                         emptyMessage="No phones found with given criteria" filteredValue="#{phoneBookBean.filteredphoneBooks}">
-
-                <f:facet name="header">
-                    <p:outputPanel>
-                        <h:outputText value="Search all fields:" />
-                        <p:inputText id="globalFilter" onkeyup="PF('phonebooksTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-                    </p:outputPanel>
-                </f:facet>
-
-                <p:column filterBy="id" headerText="Id" footerText="contains" filterMatchMode="contains">
-                    <h:outputText value="#{phonebook.id}" />
-                </p:column>
+    <h:outputText value="Welcome to Search Phone Book"/>
 
 
-                <p:column filterBy="birthDate"
-                          headerText="Year" footerText="startsWith">
-                    <h:outputText value="#{phonebook.birthDate}" />
-                </p:column>
+    <h:form>
+        <p:dataTable id="tbl" var="car" value="#{phoneBookBean.phoneBooks}"
+                     emptyMessage="No phones found with given criteria" filteredValue="#{phoneBookBean.filteredphoneBooks}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Search all fields:" />
+                    <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{car.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+
+            <p:column filterBy="#{car.phone}"
+                      headerText="Phone" footerText="startsWith" filterMatchMode="startsWith">
+                <h:outputText value="#{car.phone}" />
+            </p:column>
+
+            <p:column filterBy="#{car.fio}"
+                      headerText="Phone" footerText="startsWith" filterMatchMode="startsWith">
+                <h:outputText value="#{car.fio}" />
+            </p:column>
 
 
-                <p:column filterBy="birthDate" headerText="Year" footerText="lte" filterMatchMode="lte">
-                    <f:facet name="filter">
-                        <p:spinner onchange="PF('phonebooksTable').filter()" styleClass="year-spinner">
-                            <f:converter converterId="javax.faces.Integer" />
-                        </p:spinner>
-                    </f:facet>
-                    <h:outputText value="#{phonebook.birthDate}" />
-                </p:column>
+        </p:dataTable>
+    </h:form>
 
-                <p:column filterBy="phone" headerText="Phone number" footerText="startsWith" filterMatchMode="startsWith">
-
-                        <h:outputText value="#{phonebook.phone}"></h:outputText>
-                </p:column>
-
-            </p:dataTable>
-        </h:form>
-</h:body>
 
 
 </html>
