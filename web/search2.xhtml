@@ -19,33 +19,39 @@
 
     <h2>DataTable Example</h2>
         <h:form>
-            <p:dataTable var="phonebook" value="#{phoneBookBean.phoneBooks}" widgetVar="carsTable"
+            <p:dataTable value="#{phoneBookBean.phoneBooks}" var="phonebook"
                          emptyMessage="No phones found with given criteria" filteredValue="#{phoneBookBean.filteredphoneBooks}">
 
                 <f:facet name="header">
                     <p:outputPanel>
                         <h:outputText value="Search all fields:" />
-                        <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('phonebooksTable').filter()" style="width:150px" placeholder="Enter keyword"/>
                     </p:outputPanel>
                 </f:facet>
 
-                <p:column filterBy="#{phonebook.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+                <p:column filterBy="id" headerText="Id" footerText="contains" filterMatchMode="contains">
                     <h:outputText value="#{phonebook.id}" />
                 </p:column>
 
-                <p:column filterBy="#{phonebook.birthDate}" headerText="Year" footerText="lte" filterMatchMode="lte">
+
+                <p:column filterBy="birthDate"
+                          headerText="Year" footerText="startsWith">
+                    <h:outputText value="#{phonebook.birthDate}" />
+                </p:column>
+
+
+                <p:column filterBy="birthDate" headerText="Year" footerText="lte" filterMatchMode="lte">
                     <f:facet name="filter">
-                        <p:spinner onchange="PF('carsTable').filter()" styleClass="year-spinner">
+                        <p:spinner onchange="PF('phonebooksTable').filter()" styleClass="year-spinner">
                             <f:converter converterId="javax.faces.Integer" />
                         </p:spinner>
                     </f:facet>
                     <h:outputText value="#{phonebook.birthDate}" />
                 </p:column>
 
-                <p:column filterBy="#{phonebook.phone}" headerText="Phone number" footerText="startsWith" filterMatchMode="startsWith">
-                    <f:facet name="filter">
-                        <h:outputText value="#{phonebook.phone}"></h:outputText>         </f:facet>
-                    <h:outputText value="#{car.sold ? 'Sold': 'Sale'}" />
+                <p:column filterBy="phone" headerText="Phone number" footerText="startsWith" filterMatchMode="startsWith">
+
+                        <h:outputText value="#{phonebook.phone}"></h:outputText>
                 </p:column>
 
             </p:dataTable>

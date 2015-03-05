@@ -1,8 +1,12 @@
 import model.PhoneBook;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.Exporter;
 import persistence.SqlUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
@@ -54,6 +58,14 @@ public class PhoneBookBean implements Serializable {
     public void setFilteredphoneBooks(List<PhoneBook> filteredphoneBooks) {
         this.filteredphoneBooks = filteredphoneBooks;
     }
+
+    public void exportpdf(DataTable table, String filename) throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Exporter exporter = new ExtendedPDFExporter();
+        exporter.export(context, table, filename, false, false, "UTF-8", null, null);
+        context.responseComplete();
+    }
+
       /*
             new ArrayList<PhoneBook>(Arrays.asList(
             new PhoneBook( 1, "John",java.sql.Date.valueOf("1910-01-01"),

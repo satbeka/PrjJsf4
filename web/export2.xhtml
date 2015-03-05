@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+<h:outputStylesheet library="css" name="table-style.css"  />
+<h:graphicImage value="#{resource['images:pdf.png']}"/>
+<h:head>
+    <title>Prime Faces Export Demo model.PhoneBook</title>
+</h:head>
+
+<h:form>
+<p:dataTable id="tbl" var="ph" value="#{phoneBookBean.phoneBooks}" paginator="true" rows="10">
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Phone" />
+        </f:facet>
+        <h:outputText value="#{ph.phone}" />
+    </p:column>
+
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Fio" />
+        </f:facet>
+        <h:outputText value="#{ph.fio}"/>
+    </p:column>
+
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Birth Day" />
+        </f:facet>
+        <h:outputText value="#{ph.birthDate}" />
+    </p:column>
+
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Address" />
+        </f:facet>
+        <h:outputText value="#{ph.address}" />
+    </p:column>
+
+</p:dataTable>
+
+    <h:commandLink>
+        <p:graphicImage value="#{resource['images:pdf.png']}" />
+        <p:dataExporter type="pdf" target="tbl" fileName="mypdf" />
+    </h:commandLink>
+
+    <h:commandLink>
+        <p:graphicImage value="#{resource['images:excel.png']}" />
+        <p:dataExporter type="pdf" target="tbl" fileName="myexc" />
+    </h:commandLink>
+
+</h:form>
+
+</html>
