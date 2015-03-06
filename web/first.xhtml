@@ -5,18 +5,20 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://java.sun.com/jsf/html">
 
-<h:head>
-</h:head>
 <h:outputStylesheet library="css" name="table-style.css"  />
 <h:head>
     <title>JSF Demo model.PhoneBook</title>
+    <h:outputScript library="js" name="utilNew55.js"  />
 </h:head>
 
 <h:body>
     <h:outputText value="Welcome to Phone Book"/><br/><br/>
 
+    <h:commandButton value="ClickJsc" onclick="showMessage()" />
+
     <h2>DataTable Example</h2>
     <h:form>
+
         <h:dataTable value="#{phoneBookBean.phoneBooks}" var="phonebook"
                      styleClass="phoneTable"
                      headerClass="phoneTableHeader"
@@ -67,10 +69,15 @@
 
 
         </h:dataTable>
+
     </h:form>
 
 
     <h:form>
+
+
+
+
     <h3>Add New Phone</h3>
     <table>
         <tr>
